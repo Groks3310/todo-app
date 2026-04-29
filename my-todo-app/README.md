@@ -29,4 +29,4 @@ A simple React todo app that lets users manage daily tasks.
 
 ## Author
 
-Your Name
+GROKS
