@@ -1,20 +1,23 @@
-import React,{useState,useEffect,useMemo,useCallback} from "react";
+import React, { useContext } from "react";
+import { TodoContext } from "./TodoContext";
+import TodoItem from "./TodoItem";
 
-
-
-export default function TodoProvider({children}) {
-  const [filter, setFilter] = useState("all")
-
-const filteredTasks = useMemo(()=>{
-  const filtered = tasks.filter(task =>{
-    if( filter === "completed") return task.completed;
-    if (filter === "active ") return !task.completed;
-    return true
-  })
-  return [...filtered].sort((a,b)=> a.completed - b.completed)
-},[tasks, filter])
+export default function TodoList() {
+  const { filteredTasks, setFilter } = useContext(TodoContext);
 
   return (
-    <div>practice</div>
-  )
+    <div className="todo-list-wrapper" >
+      <div className="todo-filters">
+        <button onClick={() => setFilter("all")}>All</button>
+        <button onClick={() => setFilter("active")}>Active</button>
+        <button onClick={() => setFilter("completed")}>Completed</button>
+      </div>
+
+      <ul>
+        {filteredTasks.map((task, index) => (
+          <TodoItem key={task.id} task={task} index={index} />
+        ))}
+      </ul>
+    </div>
+  );
 }

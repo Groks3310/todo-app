@@ -3,15 +3,10 @@ import { TodoContext } from "./TodoContext";
 import TodoItem from "./TodoItem";
 
 export default function TodoList() {
-  const { filteredTasks, setFilter } = useContext(TodoContext);
+  const { filteredTasks,tasks } = useContext(TodoContext);
 
   return (
     <div className="todo-list-wrapper" >
-      <div className="todo-filters">
-        <button onClick={() => setFilter("all")}>All</button>
-        <button onClick={() => setFilter("active")}>Active</button>
-        <button onClick={() => setFilter("completed")}>Completed</button>
-      </div>
 
       <ul>
         {filteredTasks.map((task, index) => (
